@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">imagePicker</string>
+    <string name="selected_image">Imagem selecionada pelo usuário</string>
+    <string name="button_text">selecionar</string>
+</resources>
