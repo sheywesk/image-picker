@@ -21,23 +21,15 @@ class MainActivity : AppCompatActivity() {
     private var requestPermissions =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-                pickImageFromGalery()
+                launchActivity.launch("image/*")
             } else {
                 Toast.makeText(this, "Por favor permita esta merda", Toast.LENGTH_LONG)
             }
         }
 
     var launchActivity =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                image_view.setImageURI(data?.data)
-            }
+        registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
+                image_view.setImageURI(result)
         }
 
-    private fun pickImageFromGalery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        launchActivity.launch(intent)
-    }
 }
